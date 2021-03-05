@@ -1,7 +1,7 @@
 const score= document.querySelector(".score");
 const startScreen = document.querySelector(".startScreen");
 const gameArea= document.querySelector(".gameArea");
-let player={speed:5};
+let player={speed:5, score:0};
 
 console.log(gameArea);
 
@@ -24,11 +24,23 @@ function moveLines(){
 }
 
 
+// function endGame(){
+//     player.start = false;
+// }
+
+//  enimy car movings
+
 function moveAnimy(car) {
   let animy = document.querySelectorAll(".animy");
 
-  animy.forEach((item) => {
-
+  animy.forEach(function(item) {
+     
+    if(isCollide(car, item)){
+      //  endGame();
+      console.log("hit");
+     } 
+    
+    
     if (item.y > 750) {
       item.y = -300;
       item.style.left = Math.floor(Math.random() * 350) + "px";
@@ -53,7 +65,7 @@ function isCollide(a,b){
 
 
 function gameplay() {
-  console.log("i am clickked");
+  // console.log("i am clickked");
 
 //   geting position of car
   let car=document.querySelector(".car");
@@ -63,7 +75,7 @@ function gameplay() {
   if (player.start) {
 
     moveLines();
-    moveAnimy();
+    moveAnimy(car);
 
         if(keys.ArrowUp && player.y>(road.top+70)){
               player.y -=player.speed;
@@ -82,6 +94,10 @@ function gameplay() {
         car.style.left = player.x + "px";
 
     window.requestAnimationFrame(gameplay);
+    // console.log(player.score++);
+    player.score++;
+    score.innerHTML="your score" + player.score;
+    
   }
 
 }
@@ -94,6 +110,7 @@ function start(){
       startScreen.classList.add("hide");
 
       player.start=true;
+      player.score=0;
       window.requestAnimationFrame(gameplay);
 
 

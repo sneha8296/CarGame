@@ -65,3 +65,13 @@ bottom: 50px;
   position:absolute;
   margin-left: 195px;
 }
+.score{
+position:absolute;
+top: 15px;
+left: 40px;
+background-color: green;
+text-align: center;
+font-family: fantasy;
+
+
+}
